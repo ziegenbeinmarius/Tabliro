@@ -2,15 +2,13 @@ import EventRoom from "@/components/event-room";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-interface EventPageProps {
-  params: {
-    eventId: string;
-  };
-}
-
-export default async function EventPage({ params }: EventPageProps) {
+export default async function EventPage({
+  params,
+}: {
+  params: Promise<{ eventId: string }>;
+}) {
   const supabase = await createClient();
-  var { eventId } = await params;
+  const { eventId } = await params;
 
   const {
     data: { user },
