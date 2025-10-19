@@ -36,7 +36,7 @@ export default function EventRoom({
   const broadcastQueue = useRef<any>(null);
   const messageCountRef = useRef<number>(0);
   const dragStartPositions = useRef<any>({});
-  const THROTTLE_MS = 100; // Limit to 10 messages per second per user
+  const THROTTLE_MS = 50; // Limit to 10 messages per second per user
 
   const [sharedObjects, setSharedObjects] = useState<any>(() => {
     return initialObjects.map((obj) => ({
@@ -237,7 +237,7 @@ export default function EventRoom({
         .then(() => {
           setTimeout(() => {
             sendDragEnd();
-          }, 100);
+          }, 110);
         });
 
       const sendDragEnd = () => {
