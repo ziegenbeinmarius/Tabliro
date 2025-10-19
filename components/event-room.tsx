@@ -235,10 +235,9 @@ export default function EventRoom({
           },
         })
         .then(() => {
-          sendDragEnd();
-        })
-        .catch((error: any) => {
-          sendDragEnd();
+          setTimeout(() => {
+            sendDragEnd();
+          }, 100);
         });
 
       const sendDragEnd = () => {
