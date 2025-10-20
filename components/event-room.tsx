@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { createClient } from "@/utils/supabase/client";
 
 type Object = {
@@ -36,7 +37,7 @@ export default function EventRoom({
   const broadcastQueue = useRef<any>(null);
   const messageCountRef = useRef<number>(0);
   const dragStartPositions = useRef<any>({});
-  const THROTTLE_MS = 50; // Limit to 10 messages per second per user
+  const THROTTLE_MS = 10; // Limit to 10 messages per second per user
 
   const [sharedObjects, setSharedObjects] = useState<any>(() => {
     return initialObjects.map((obj) => ({
@@ -275,12 +276,13 @@ export default function EventRoom({
 
       <div
         ref={roomRef}
-        className="relative w-full h-96 border-2 border-dashed border-gray-300 mt-4 bg-gray-50 rounded-lg cursor-crosshair"
+        className="relative w-full h-[600px] border-2 border-dashed border-gray-300 mt-4 bg-gray-50 rounded-lg cursor-crosshair"
       >
         <DndContext
           onDragStart={handleDragStart}
           onDragMove={handleDragMove}
           onDragEnd={handleDragEnd}
+          modifiers={[restrictToParentElement]}
         >
           {sharedObjects.map((obj: any) => (
             <Draggable
