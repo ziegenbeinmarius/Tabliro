@@ -258,7 +258,7 @@ export default function EventRoom({
   };
 
   return (
-    <div>
+    <div className="">
       <div className="mb-4 p-2 bg-gray-100 rounded">
         <div className="flex justify-between items-center">
           <span
@@ -276,7 +276,7 @@ export default function EventRoom({
 
       <div
         ref={roomRef}
-        className="relative w-full h-[600px] border-2 border-dashed border-gray-300 mt-4 bg-gray-50 rounded-lg cursor-crosshair"
+        className="m-auto relative w-[600px] h-[600px] border-2 border-dashed border-gray-300 mt-4 bg-gray-50 rounded-lg cursor-crosshair"
       >
         <DndContext
           onDragStart={handleDragStart}
